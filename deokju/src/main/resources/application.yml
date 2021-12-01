@@ -1,0 +1,21 @@
+spring:
+  # RDB ??: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.sql
+  datasource:
+    url: jdbc:mariadb://localhost:3306/employees
+    username: user
+    password: password
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    root: "info"
+    #    web: "debug
+    #    sql: "debug"
+    io.wetov.pinstagram: "debug"
+
+#FIXME intellij warning ?? #46
+# ??? ?? (config/CustomProperties.kt ??)
+custom:
+  log-method-enabled: true
+  test-controller-enabled: true
