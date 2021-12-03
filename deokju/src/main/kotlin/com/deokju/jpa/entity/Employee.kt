@@ -21,7 +21,7 @@ class Employee(
 ) {
 
     @TableGenerator(name = "id_generator", table = "id_gen", pkColumnName = "gen_name", valueColumnName = "gen_value",
-            pkColumnValue="emp_no", initialValue=1, allocationSize=10)
+            pkColumnValue="emp_no", initialValue=1, allocationSize=1)
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
     @Column(name = "emp_no")
