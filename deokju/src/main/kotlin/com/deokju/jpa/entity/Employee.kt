@@ -11,7 +11,7 @@ class Employee(
     @Column(name = "first_name")
     var firstName: String = "",
 
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
     @Column(name = "gender")
     var gender: Gender,
     @Column(name = "last_name")
