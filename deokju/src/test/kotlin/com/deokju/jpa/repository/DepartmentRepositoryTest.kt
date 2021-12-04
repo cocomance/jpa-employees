@@ -2,6 +2,7 @@ package com.deokju.jpa.repository
 
 import com.deokju.jpa.entity.*
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,12 +21,9 @@ class DepartmentRepositoryTest(
         val dr: DepartmentRepository,
         @Autowired
         val em:EntityManager
-
 ) {
-
     @Test
     fun `부서저장 테스트`() {
-
         val department = Department(deptNo = "DE01", dept_name = "웹개발부서")
         dr.save(department)
     }
@@ -40,8 +38,17 @@ class DepartmentRepositoryTest(
 
         println(deptEmp)
 
+        val employee = em.createQuery("select e from Employee  e WHERE e.empNo = :empNo"
+            , Employee::class.javaObjectType)
+            .setParameter("empNo", 2L)
+            .singleResult
 
-
+        assertThat(deptEmp.employee).isEqualTo(employee)
+        assertThat(deptEmp.employee).isNotNull
+        assertThat(deptEmp.employee?.empNo).isEqualTo(employee.empNo)
+        assertThat(deptEmp.employee?.gender).isEqualTo(employee.gender)
+        assertThat(deptEmp.employee?.firstName).isEqualTo(employee.firstName)
+        assertThat(deptEmp.employee?.lastName).isEqualTo(employee.lastName)
     }
 
 
