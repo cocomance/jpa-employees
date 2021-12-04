@@ -1,6 +1,5 @@
 package com.deokju.jpa.entity
 
-import java.util.stream.Stream
 import javax.persistence.AttributeConverter
 import javax.persistence.Converter
 

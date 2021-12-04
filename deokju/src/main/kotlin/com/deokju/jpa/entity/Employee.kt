@@ -26,4 +26,19 @@ class Employee(
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
     @Column(name = "emp_no")
     val empNo: Long = 0L
+
+    @OneToMany(mappedBy = "employee")
+    val salaries: MutableList<Salary> = ArrayList()
+
+    @OneToMany(mappedBy = "employee")
+    val titles: MutableList<Title> = ArrayList()
+
+
+    fun addSalary(salary: Salary){
+        this.salaries.add(salary)
+    }
+
+    fun addTitle(title: Title){
+        this.titles.add(title)
+    }
 }
