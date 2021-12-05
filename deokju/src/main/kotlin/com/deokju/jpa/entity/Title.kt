@@ -16,7 +16,7 @@ class Title(
     @JoinColumn(name="emp_no")
     var employee: Employee? = null
 
-    open fun addEmployee(employee: Employee): Unit{
+    fun addEmployee(employee: Employee): Unit{
         this.employee = employee;
     }
 }

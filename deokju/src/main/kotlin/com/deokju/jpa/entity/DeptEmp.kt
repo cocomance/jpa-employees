@@ -9,7 +9,7 @@ class DeptEmp(
         @EmbeddedId
         val deptEmpId: DeptEmpId,
         @Column(name="from_Date")
-        var from_Date: LocalDate,
+        var fromDate: LocalDate,
         @Column(name="to_Date")
         var toDate: LocalDate,
 ){

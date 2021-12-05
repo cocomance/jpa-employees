@@ -30,7 +30,7 @@ class SalaryRepositoryTest(
 
         //월급 줄 놈 찾아오기
         val jaeyuak = em.createQuery("select E from Employee E where E.empNo =:empNo", Employee::class.javaObjectType)
-                .setParameter("empNo", 7L)
+                .setParameter("empNo", 2L)
                 .singleResult
 
         //월급정보 만들기
@@ -47,11 +47,11 @@ class SalaryRepositoryTest(
     @Test
     fun `근로자와 월급의 연관관계 테스트`() {
         val jaeyuak = em.createQuery("select E from Employee E where E.empNo =:empNo", Employee::class.javaObjectType)
-            .setParameter("empNo", 7L)
+            .setParameter("empNo", 2L)
             .singleResult
 
         val payInfo = em.createQuery("select S from Salary S where S.employee.empNo =:empNo", Salary::class.javaObjectType)
-            .setParameter("empNo", 7L)
+            .setParameter("empNo", 2L)
             .singleResult
 
         Assertions.assertThat(jaeyuak.salaries).isNotEmpty

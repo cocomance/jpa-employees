@@ -24,8 +24,42 @@ class DepartmentRepositoryTest(
 ) {
     @Test
     fun `부서저장 테스트`() {
-        val department = Department(deptNo = "DE01", dept_name = "웹개발부서")
+        val department = Department(deptNo = "DE01", deptName = "웹개발부서")
         dr.save(department)
+    }
+
+    @Test
+    fun `부서연관관계 저장 테스트`() {
+        val employee = em.createQuery("select E from Employee E", Employee::class.javaObjectType)
+            .singleResult
+
+        val department =em.createQuery("select D from Department D", Department::class.javaObjectType)
+            .singleResult
+
+        val deptEmp = DeptEmp(
+            deptEmpId = DeptEmpId(employee.empNo, department.deptNo),
+            fromDate = LocalDate.now(),
+            toDate = LocalDate.now()
+        )
+
+        em.persist(deptEmp)
+
+        em.flush()
+        em.clear()
+
+        val getDeptEmp = em.createQuery(
+            "select D from DeptEmp D where D.deptEmpId.empNo = :empNo" +
+                    " and D.deptEmpId.deptNo = :deptNo", DeptEmp::class.javaObjectType
+        ).setParameter("empNo", employee.empNo)
+         .setParameter("deptNo", department.deptNo)
+            .singleResult
+
+        //비교
+        assertThat(getDeptEmp.employee).isNotNull
+        assertThat(getDeptEmp.employee?.empNo).isEqualTo(employee.empNo)
+        assertThat(getDeptEmp.employee?.gender).isEqualTo(employee.gender)
+        assertThat(getDeptEmp.employee?.firstName).isEqualTo(employee.firstName)
+        assertThat(getDeptEmp.employee?.lastName).isEqualTo(employee.lastName)
     }
 
     @Test

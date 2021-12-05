@@ -7,7 +7,7 @@ import javax.persistence.*
 @Table(name="departments")
 class Department(
     @Column(name = "dept_name")
-    val dept_name: String ="",
+    val deptName: String ="",
     @Id
     @Column(name = "dept_no")
     val deptNo: String =""

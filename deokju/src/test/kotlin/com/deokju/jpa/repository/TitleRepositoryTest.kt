@@ -23,7 +23,7 @@ class TitleRepositoryTest(
     fun `타이틀 저장 테스트`() {
 
         //직원정보 가져오기
-        val deokju = em.createQuery("select E from Employee E where E.empNo =:empNo", Employee::class.javaObjectType)
+        val employee = em.createQuery("select E from Employee E where E.empNo =:empNo", Employee::class.javaObjectType)
                 .setParameter("empNo", 2L)
                 .singleResult
 
@@ -33,7 +33,7 @@ class TitleRepositoryTest(
                 toDate = LocalDate.now()
                  )
 
-            titles.addEmployee(deokju)
+            titles.addEmployee(employee)
 
         em.persist(titles);
     }

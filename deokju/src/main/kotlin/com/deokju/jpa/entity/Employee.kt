@@ -20,7 +20,7 @@ class Employee(
     val hireDate: LocalDate,
 ) {
 
-    @TableGenerator(name = "id_generator", table = "id_gen", pkColumnName = "gen_name", valueColumnName = "gen_value",
+    @TableGenerator(name = "id_generator", table = "id_generator", pkColumnName = "gen_name", valueColumnName = "gen_value",
             pkColumnValue="emp_no", initialValue=1, allocationSize=1)
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
